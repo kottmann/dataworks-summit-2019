@@ -1,1 +1,1 @@
-# Berlin Buzzwords 2018, Berlin, Germany - Satellite Image Classification for LandUse
+# Flink Forward 2018, Berlin, Germany - Streaming Topic Model Training and Inference
