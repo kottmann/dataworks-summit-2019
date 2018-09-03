@@ -52,7 +52,6 @@
                 <li>
                     <h6 style='text-align: left; font-size: 80%;'>Joey Frazee <br/><span style="font-size: 60%"><i class="fa fa-twitter" aria-hidden="true"></i> @jfrazee</span></h6>
                     <ul style='font-size: 70%;'>
-                        <li>Product Solutions Architect, Databricks</li>
                         <li>Member of Apache Software Foundation</li>
                         <li>Committer on Apache NiFi, and PMC on Apache Streams</li>
                     </ul>
@@ -61,7 +60,6 @@
                 <li>
                     <h6 style='text-align: left; font-size: 80%;'>Suneel Marthi <br/><span style="font-size: 60%"><i class="fa fa-twitter" aria-hidden="true"></i> @suneelmarthi</span></h6>
                     <ul style='font-size: 70%;'>
-                        <li>Principal Technologist, Amazon Web Services</li>
                         <li>Member of Apache Software Foundation</li>
                         <li>Committer and PMC on Apache Mahout, Apache OpenNLP, Apache Streams</li>
                     </ul>
@@ -119,7 +117,7 @@
         <section data-background-image="img/ZsMwlm2-purpleish.jpg">
             <h3>Common Approaches to Topic Modeling</h3>
         </section>
-        <section data-background-image="img/ZsMwlm2-greenish.jpg">
+        <section data-background-image="img/ZsMwlm2-redish.jpg">
             <ul>
                 <li>Latent Dirichlet Allocation (LDA)</li>
                 <ul>
@@ -129,7 +127,7 @@
                 </ul>
             </ul>
         </section>
-        <section data-background-image="img/ZsMwlm2-greenish.jpg">
+        <section data-background-image="img/ZsMwlm2-yellowish.jpg">
             <ul>
                 <li>Latent Semantic Analysis (LSA)</li>
                 <ul>
@@ -138,7 +136,7 @@
                 </ul>
             </ul>
         </section>
-        <section data-background-image="img/ZsMwlm2-greenish.jpg">
+        <section data-background-image="img/ZsMwlm2-blueish.jpg">
             <ul>
                 <li>Drawbacks of Traditional Topic Modeling Approach</li>
                 <ul>
@@ -151,16 +149,92 @@
                 </code></pre>
             </ul>
         </section>
+        <section data-background-image="img/ZsMwlm2-reddish.jpg">
+            <h3><s>Common Approaches</s> Deep Learning (of course)</h3>
+            <ul>
+                <li>Learn to perform LDA: LDA supervised DNN training (inference speed up)
+                    <ul>
+                        https://arxiv.org/abs/1508.01011
+                    </ul>
+                </li>
+                <li>Deep Belief Networks for Topic Modelling
+                    <ul>
+                        <li>https://arxiv.org/abs/1501.04325</li>
+                    </ul>
+                </li>
+
+            </ul>
+        </section>
+        <section data-background-image="img/ZsMwlm2-greenish.jpg">
+            <h4>Embeddings for Topic Modeling</h4>
+            <ul>
+                <li>LDA2Vec: Mixing LDA and word2vec word embeddings
+                    <ul>
+                        https://arxiv.org/abs/1605.02019
+                    </ul>
+                </li>
+                <li>Navigating embeddings: geometric navigation in word
+                    and doc embeddings space looking for topic embedding
+                </li>
+            </ul>
+            <p><img src='img/embeddings.png' style=' position: absolute; right: 0px; bottom: 0px; width: 30%; height: 30%; margin: 0px, 0px, 0px, 0px; border: none; background: none;box-shadow: none; ' align="right"/><br/></p>
+        </section>
+        <section data-background-image="img/ZsMwlm2-yellowish.jpg">
+            <h4>Static vs Dynamic Corpora</h4>
+            <ul>
+                <li>Learning Topic Models over a fixed set of Documents
+                    <ul>
+                        <li>Fetch the Corpus</li>
+                        <li>Train and Fit a topic model</li>
+                        <li>Extract topics</li>
+                        <li>...other downstream tasks</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+        <section data-background-image="img/ZsMwlm2-reddish.jpg">
+            <h4>Static vs Dynamic Corpora (Contd)</h4>
+            <ul>
+                <li>What to do with Corpus updates?
+                    <ul>
+                        <li>Document collections are not static in real world</li>
+                        <li>There may be no document collections to begin with</li>
+                        <li>Memory limits with large corpora</li>
+                        <li>Reprocess entire corpora when new documents are added</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+        <section data-background-image="img/ZsMwlm2-blueish.jpg">
+            <h4>Static vs Dynamic Corpora (Contd)</h4>
+            <ul>
+            <li>Streams, Streams, Streams
+                <ul>
+                    <li>Twitter stream</li>
+                    <li>Reddit posts</li>
+                    <li>Papers on Arxiv</li>
+                    <li>....</li>
+                </ul>
+            </li>
+            </ul>
+        </section>
+
+        <section data-background-image="img/ZsMwlm2-purpleish.jpg">
+            <h3>Topic Modeling on Streams</h3>
+        </section>
+
+
+
 
         <section data-background-image="img/buzzwords_2017-purpleish.jpg">
             <h2>Links</h2>
             <ul>
-                <li>Stream LDA: https://github.com/jessykate/streamLDA</li>
-                <li>https://github.com/kzhai/InfVocLDA</li>
+                <li>Stream LDA: https://github.com/jessykate/streamLDA</li><br/>
+                <li>https://github.com/kzhai/InfVocLDA</li><br/>
                 <li>http://papers.nips.cc/paper/3902-online-learning-for-latentdirichlet-allocation
-                </li>
-                <li>Learning from LDA using Deep Neural Networks - https://arxiv.org/pdf/1508.01011.pdf</li>
-                <li>Deep Belief Nets for Topic Modeling - https://arxiv.org/pdf/1501.04325.pdf</li>
+                </li><br/>
+                <li>Learning from LDA using Deep Neural Networks - https://arxiv.org/pdf/1508.01011.pdf</li><br/>
+                <li>Deep Belief Nets for Topic Modeling - https://arxiv.org/pdf/1501.04325.pdf</li><br/>
             </ul>
         </section>
 
