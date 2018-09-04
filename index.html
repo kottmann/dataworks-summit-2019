@@ -220,13 +220,13 @@
         </section>
 
         <section>
-            <h3>Audience Questions</h3>
+            <h3>Questions for Audience</h3>
             <ul>
                 <li>
-                    1. Who’s doing inference or scoring on streaming data?<br/>
+                    Who’s doing inference or scoring on streaming data?<br/>
                 </li>
                 <li>
-                    2. Who’s doing online learning and optimization on streaming data?
+                    Who’s doing online learning and optimization on streaming data?
                 </li>
             </ul>
             <p>(2) is hard, sometimes because the algorithms aren’t there.
@@ -261,6 +261,29 @@
 
         </section>
 
+        <section data-background-image="img/buzzwords_2017-yellowish.jpg">
+            <h3>Bayesian Inference</h3>
+            <p>Goal: Calculate the posterior distribution of a probabilistic model given data</p>
+            <br/>
+            <ul>
+                <li>Repeatedly Sample from a conditional distribution to approximate joint distribution;
+                    typically a batch process (Gibbs Sampling, MCMC)<br/>
+                </li>
+                <li>
+                    Optimize the parameters of a function that approximates joint distribution
+                </li>
+            </ul>
+        </section>
+        <section>
+             <h3>Variational Bayes</h3>
+             <ul>
+                <li>Expectation Maximization-like optimization</li>
+                <li>Faster and more accurate</li>
+                <li>Can often be computed online (on windows over streams)</li>
+             </ul>
+
+        </section>
+
         <section data-background-image="img/buzzwords_2017-purpleish.jpg">
             <h2>Links</h2>
             <ul>
@@ -280,6 +303,8 @@
                 <li>Online LDA</li>
             </ul>
         </section>
+
+
 
         <section data-background-image="img/buzzwords_2017-blueish.png">
           <h3>Credits</h3>
