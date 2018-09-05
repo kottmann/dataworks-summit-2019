@@ -272,6 +272,7 @@
                 </li>
             </ul>
         </section>
+
         <section>
              <h3>Variational Bayes</h3>
              <ul>
@@ -280,6 +281,7 @@
                  <li style="font-size: 85%">Can often be computed online (on windows over streams)</li>
              </ul>
         </section>
+
 				<section>
 					<h3>Online LDA (1/2)</h3>
 					<ul>
@@ -290,31 +292,32 @@
 					</ul>
 					<p style="font-size: 40%; text-align: left;"><a style="color: white;" href="https://www.di.ens.fr/~fbach/mdhnips2010.pdf">Hoffman, Blei & Bach. Online Learning for Latent Dirichlet Allocation. Proceedings of Neural Information Processing Systems. 2010.</a></p>
 				</section>
+
 				<section>
 					<h3>Online LDA (2/2)</h3>
 					<table align="left">
 						<tr>
-							<td width=400 style="vertical-align: top"><img src="img/online_vb_for_lda.png" width=399 border=0/></td>
+							<td width=400 style="vertical-align: top"><img src="img/online_vb_for_lda.png" border=0/></td>
 							<td width=400 style="vertical-align: top">
 								<ul>
 									<li style="font-size: 14pt; list-style: none; padding-left: 0; margin-left: -16px">job-constant</li>
-								  <li style="font-size: 11pt">K: number of topics</li>
-								  <li style="font-size: 11pt">alpha: topic-document dist. prior</li>
-								  <li style="font-size: 11pt">eta: topic-word dist. prior</li>
-								  <li style="font-size: 11pt">tau0: learning rate</li>
-								  <li style="font-size: 11pt">kappa: decay rate</li>
+								  <li style="font-size: 11pt"><em>K</em>: number of topics</li>
+								  <li style="font-size: 11pt"><em>alpha</em>: topic-document dist. prior</li>
+								  <li style="font-size: 11pt"><em>eta</em>: topic-word dist. prior</li>
+								  <li style="font-size: 11pt"><em>tau0</em>: learning rate</li>
+								  <li style="font-size: 11pt"><em>kappa</em>: decay rate</li>
 								</ul>
 								<ul>
 									<li style="font-size: 14pt; list-style: none; padding-left: 0; margin-left: -16px">(mini)batch-local</li>
-									<li style="font-size: 11pt">gamma: theta prior</li>
-									<li style="font-size: 11pt">theta: param. for per-document topic dist</li>
-									<li style="font-size: 11pt">phi: param. for per-topic word dist.</li>
-									<li style="font-size: 11pt">rho: update weight</li>
+									<li style="font-size: 11pt"><em>gamma</em>: theta prior</li>
+									<li style="font-size: 11pt"><em>theta</em>: param. for per-document topic dist</li>
+									<li style="font-size: 11pt"><em>phi</em>: param. for per-topic word dist.</li>
+									<li style="font-size: 11pt"><em>rho</em>: update weight</li>
 								</ul>
 								<ul>
 									<li style="font-size: 14pt; list-style: none; padding-left: 0; margin-left: -16px">job-global</li>
-									<li style="font-size: 11pt">lambda: parameter for topic-word dist.</li>
-									<li style="font-size: 11pt">t: documents/batches seen (index)</li>
+									<li style="font-size: 11pt"><em>lambda</em>: parameter for topic-word dist.</li>
+									<li style="font-size: 11pt"><em>t</em>: documents/batches seen (index)</li>
 								</ul>
 							</td>
 						</tr>
@@ -323,7 +326,55 @@
 								<p>Goal: Optimize the topic-word dist. parameter lambda; it tells us what words belong to the topics.</p>
 								<p style="font-size: 10pt">[Image source: Hoffman, Blei & Bach, 2010.]</p>
 							</td>
-							<td width=400 style="font-size: 14pt"><p style="padding-left: 32px">Job-global parameters can be tracked in state. Batch-local parameters can be discarded.</p></td>
+							<td width=400 style="font-size: 14pt"><p style="padding-left: 32px">Job-global parameters can be tracked in a state store. Batch-local parameters can be discarded.</p></td>
+						</tr>
+					</table>
+				</section>
+
+				<section>
+					<h2>Online LDA on Flink</h2>
+					<table align="left">
+						<tr>
+							<td width=400 style="vertical-align: top">
+								<ul>
+									<li style="font-size: 14pt; list-style: none; padding-left: 0; margin-left: -16px">job-constant</li>
+								  <li style="font-size: 11pt"><em>K</em>: number of topics</li>
+								  <li style="font-size: 11pt"><em>alpha</em>: topic-document dist. prior</li>
+								  <li style="font-size: 11pt"><em>eta</em>: topic-word dist. prior</li>
+								  <li style="font-size: 11pt"><em>tau0</em>: learning rate</li>
+								  <li style="font-size: 11pt"><em>kappa</em>: decay rate</li>
+								</ul>
+							</td>
+							<td width=400><p style="font-size: 50%;">Set job parameters globally with setGlobalJobParameters() on execution environment, or pass as arguments to operators</p></td>
+						</tr>
+						<tr>
+							<td width=400 style="vertical-align: top">
+								<ul>
+									<li style="font-size: 14pt; list-style: none; padding-left: 0; margin-left: -16px">(mini)batch-local</li>
+									<li style="font-size: 11pt"><em>gamma</em>: theta prior</li>
+									<li style="font-size: 11pt"><em>theta</em>: param. for per-document topic dist</li>
+									<li style="font-size: 11pt"><em>phi</em>: param. for per-topic word dist.</li>
+									<li style="font-size: 11pt"><em>rho</em>: update weight</li>
+								</ul>
+							</td>
+							<td width=400><p style="font-size: 50%;">Operator/task-internal and don't need to be accessible by other tasks</p></td>
+						</tr>
+						<tr>
+							<td width=400 style="vertical-align: top">
+								<ul>
+									<li style="font-size: 14pt; list-style: none; padding-left: 0; margin-left: -16px">job-global</li>
+									<li style="font-size: 11pt"><em>lambda</em>: parameter for topic-word dist.</li>
+									<li style="font-size: 11pt"><em>t</em>: documents/batches seen (index)</li>
+								</ul>
+							</td>
+							<td width=400 style="vertical-align: top">
+								<ul style="margin-left: 18px;">
+									<li style="font-size: 14pt; list-style: none; padding-left: 0; margin-left: -24px">Several options:</li>
+									<li style="font-size: 11pt">External key-value store</li>
+									<li style="font-size: 11pt">Accumulators: <em>lambda</em> update as increment, accumulator + broadcast variables</li>
+									<li style="font-size: 11pt">Broadcast state</li>
+								</ul>
+							</td>
 						</tr>
 					</table>
 				</section>
@@ -347,8 +398,6 @@
                 <li>Online LDA</li>
             </ul>
         </section>
-
-
 
         <section data-background-image="img/buzzwords_2017-blueish.png">
           <h3>Credits</h3>
