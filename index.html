@@ -266,11 +266,11 @@
             <p>Goal: Calculate the posterior distribution of a probabilistic model given data</p>
             <br/>
             <ul>
-                <li>Repeatedly Sample from a conditional distribution to approximate joint distribution;
-                    typically a batch process (Gibbs Sampling, MCMC)<br/>
+                <li>Gibbs sampling/MCMC: Repeatedly sample from conditional distribution(s) to approximate the posterior of the joint distribution;
+                    typically a batch process<br/>
                 </li>
                 <li>
-                    Optimize the parameters of a function that approximates joint distribution
+                    Variational Bayes: Optimize the parameters of a function that approximates joint distribution
                 </li>
             </ul>
         </section>
@@ -281,8 +281,41 @@
                 <li>Faster and more accurate</li>
                 <li>Can often be computed online (on windows over streams)</li>
              </ul>
-
         </section>
+				<section>
+					<h3>Online LDA (2/2)</h3>
+					<table align="left">
+						<tr>
+							<td width=400 style="vertical-align: top"><img src="img/online_vb_for_lda.png" width=399 border=0/></td>
+							<td width=400 style="vertical-align: top">
+								<ul>
+									<li style="font-size: 14pt; list-style: none; padding-left: 0; margin-left: -16px">job-constant</li>
+								  <li style="font-size: 11pt">K: number of topics</li>
+								  <li style="font-size: 11pt">alpha: topic-document dist. prior</li>
+								  <li style="font-size: 11pt">eta: topic-word dist. prior</li>
+								  <li style="font-size: 11pt">tau0: learning rate</li>
+								  <li style="font-size: 11pt">kappa: decay rate</li>
+								</ul>
+								<ul>
+									<li style="font-size: 14pt; list-style: none; padding-left: 0; margin-left: -16px">(mini)batch-local</li>
+									<li style="font-size: 11pt">gamma: theta prior</li>
+									<li style="font-size: 11pt">theta: param. for per-document topic dist</li>
+									<li style="font-size: 11pt">phi: param. for per-topic word dist.</li>
+									<li style="font-size: 11pt">rho: update weight</li>
+								</ul>
+								<ul>
+									<li style="font-size: 14pt; list-style: none; padding-left: 0; margin-left: -16px">job-global</li>
+									<li style="font-size: 11pt">lambda: parameter for topic-word dist.</li>
+									<li style="font-size: 11pt">t: documents/batches seen (index)</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<td width=400 style="font-size: 14pt"><p>Goal: Optimize the topic-word dist. parameter lambda; it tells us what words belong to the topics.</p></td>
+							<td width=400 style="font-size: 14pt"><p style="padding-left: 32px">Job-global parameters can be tracked in state. Batch-local parameters can be discarded.</p></td>
+						</tr>
+					</table>
+				</section>
 
         <section data-background-image="img/buzzwords_2017-purpleish.jpg">
             <h2>Links</h2>
